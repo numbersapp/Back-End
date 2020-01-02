@@ -1,7 +1,7 @@
 
 exports.up = function(knex,Promise) {
   return knex.schema.createTable('users',tbl => {
-      tbl.integer('user_id',10).primary();
+      tbl.increments()
 
       tbl.string('username',128)
       .notNullable()

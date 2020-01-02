@@ -15,12 +15,12 @@ router.post('/register', (req,res) => {
         res.status(200).json(user)
     })
     .catch(error => {
-        res.status(500).json(error.response)
+        res.status(500).json(error)
     })
 })
 
 router.post('/login', (req,res) => {
-    let {username,password,email} = req.body;
+    let {username,password} = req.body;
 
     Users.findBy({username})
     .first()

@@ -7,7 +7,7 @@ exports.up = function (knex, Promise) {
       .integer('user_id')
       .notNullable()
       .unsigned()
-      .references('user_id')
+      .references('id')
       .inTable('users')
       .onDelete('RESTRICT')
       .onUpdate('CASCADE');
@@ -84,5 +84,5 @@ exports.up = function (knex, Promise) {
 };
 
 exports.down = function (knex, Promise) {
-  return knex.schema.dropIfTableExists('properties')
+  return knex.schema.dropTableIfExists('properties')
 };
