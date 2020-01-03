@@ -13,7 +13,7 @@ router.get('/',restricted,(req,res) => {
 })
 
 router.get('/:id', restricted,(req,res) => {
-    Properties.getPropertyById()
+    Properties.getPropertyById(req.params.id)
     .then(property => {
         if(property){
             res.status(200).json(property);
