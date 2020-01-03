@@ -11,8 +11,9 @@ module.exports = (req,res,next) => {
             }
             else {
                 req.user = {
+                    id:decodedToken.id,
                     username:decodedToken.username,
-                    username:decodedToken.email,
+                    email:decodedToken.email,
                 }
                 next();
             }
