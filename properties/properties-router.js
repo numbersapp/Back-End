@@ -1,7 +1,8 @@
 const router = require("express").Router()
+const restricted = require('../auth/restricted.js')
 const Properties = require('./properties-model.js')
 
-router.get('/',(req,res) => {
+router.get('/',restricted,(req,res) => {
     Properties.getProperties()
     .then(property => {
         res.status(200).json(property);
@@ -11,7 +12,7 @@ router.get('/',(req,res) => {
     })
 })
 
-router.get('/:id',(req,res) => {
+router.get('/:id', restricted,(req,res) => {
     Properties.getPropertyById()
     .then(property => {
         if(property){
@@ -27,7 +28,7 @@ router.get('/:id',(req,res) => {
     })
 })
 
-router.post('/',  (req, res) => {
+router.post('/', restricted, (req, res) => {
 
     if(req.body.title && req.body.street_address && req.body.city && req.body.state &&
         req.body.zipcode && req.body.purchase_price && req.body.estimated_repair_costs && req.body.after_repair_value &&
@@ -51,7 +52,7 @@ router.post('/',  (req, res) => {
         }
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id',restricted, (req, res) => {
 
     Properties
         .update(req.params.id, req.body)
@@ -68,7 +69,7 @@ router.put('/:id', (req, res) => {
         })
 });
 
-router.delete('/:id',(req, res) => {
+router.delete('/:id',restricted,(req, res) => {
 
     Properties
         .remove(req.params.id)
